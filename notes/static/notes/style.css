@@ -1,0 +1,38 @@
+* { box-sizing:border-box; }
+body { background:url(http://therefinedinvestor.com/wp-content/uploads/2015/02/animated-wallpapers-illusions-optical-illusion-mousepad-black-and-white-optical-illusions-wallpaper.jpg) #cacaca; margin:30px; }
+
+.postit  { 
+	display: block;
+	padding:25px 25px 40px;
+	margin:0 auto 20px auto;
+	width:750px;
+	height:auto;
+	line-height:1.5;
+	border:0;
+	border-radius:5px;
+	background-color: black;
+	overflow:hidden;
+	transition:box-shadow 0.5s ease;
+}
+
+.postit:hover{
+	  transform: rotate(1deg);
+	  transform: scale(1.1);
+}
+
+u{
+	text-decoration: none;
+	font-family: 'Slabo 27px', serif;
+	color: white;
+	font-size:30pt;
+}
+
+a:link{
+    text-decoration: None;
+}
+
+h1{
+	font-family: 'Slabo 27px', serif;
+	font-size:50pt;
+	color:gray;
+}

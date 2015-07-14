@@ -1,0 +1,19 @@
+{%load staticfiles%}
+
+<link rel="stylesheet" type="text/css" href="{% static 'notes/style.css' %}" />
+
+<title>IntoTheDeep</title>
+
+<h1>IntoTheDeep</h1>
+
+{% if notes %}
+    {% for note in notes %}
+        <a href={%url 'detail' note.id %}>
+            <div class="postit">
+                <u>{{note.title}}</u>
+            </div>
+        </a>
+    {% endfor %}
+{% else %}
+    <p>No notes are available.</p>
+{% endif %}

@@ -12,7 +12,7 @@ def notes_list(request):
 def note(request, note_id):
     note = Note.objects.get(id = note_id)
     resptext = ""
-    resptext += "<a href = '/main/' style = 'text-decoration:none'><h1 style='color:gray; font-family:serif; font-size:50pt; text-decoration:none' >IntoTheDeep</h1></a><div style='background-color:black; width:750px; height:auto; padding:25px 25px 40px; display:block'>"
+    resptext += "<a href = '/main/' style = 'text-decoration:none'><h1 style='color:gray; font-family:serif; font-size:50pt; text-decoration:none' >IntoTheDeep</h1></a><div style='background-color:black; width:750px; height:auto; padding:25px 25px 40px; display:block; border-radius:5px'>"
     resptext += "<h2  style='color:white; font-family:serif'>" + note.title + "</h2>"
     resptext += "<p style='color:white; font-family:serif'>"+ note.content + "</p></div>"
     return HttpResponse(resptext)

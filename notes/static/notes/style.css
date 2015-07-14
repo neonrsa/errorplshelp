@@ -16,13 +16,12 @@ body { background:url(http://therefinedinvestor.com/wp-content/uploads/2015/02/a
 }
 
 .postit:hover{
-	  transform: rotate(1deg);
 	  transform: scale(1.1);
 }
 
 u{
 	text-decoration: none;
-	font-family: 'Slabo 27px', serif;
+	font-family: serif;
 	color: white;
 	font-size:30pt;
 }

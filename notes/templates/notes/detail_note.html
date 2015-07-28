@@ -1,0 +1,17 @@
+{% load bootstrap3 %}
+{%load staticfiles%}
+
+<link rel="stylesheet" type="text/css" href="{% static 'notes/style.css' %}" />
+
+<title>IntoTheDeep</title>
+
+<a href = '/main/' style = 'text-decoration:none'>
+    <h1>IntoTheDeep</h1>
+</a>
+    
+    <div style='margin: 0 auto 20px auto;background-color:black; width:750px; height:auto; padding:25px 25px 90px; display:block; border-radius:5px;'>
+        <u> {{note_det.title}} <u>
+        <p style='color:white; font-family:serif; font-size:20pt'> {{note_det.content}} </p>
+        <a href="/note/{{note_det.id}}/edit"><h3 style="color:gray; float:right">edit</h3></a>
+        <a href="/note/{{note_det.id}}/delete"><h3 style="color:gray; float:left">delete</h3></a>
+    </div>

@@ -1,0 +1,15 @@
+{%extends 'notes/base.html'%}
+{% load crispy_forms_tags %}
+{%block content%}
+<a href = "/main/" style = 'text-decoration:none'><h1>IntoTheDeep</h1></a>
+<div class="container">
+    {%if object%}
+        <h1>Update: <br> {{object.title}}</h1>
+    {%else%}
+        <h3>Enquire for Epiphanies</h3>
+    {%endif%}
+    {% crispy form %}
+	</div>
+     </div>
+</div>
+{%endblock%}

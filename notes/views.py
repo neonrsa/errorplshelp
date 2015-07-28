@@ -1,19 +1,33 @@
 from django.shortcuts import render
 from .models import Note
 from django.http import HttpResponse
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
+from notes.forms import NoteForm
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
+from django.views.generic import ListView
 
 # Create your views here.
+class NoteList(ListView):
+    model = Note
 
 def notes_list(request):
     allnotes = Note.objects.all()
-    return render(request, 'notes/index.html', {'notes': allnotes})
+    return render(request, 'notes/note_list.html', {'notes': allnotes})
     
-def note(request, note_id):
-    note = Note.objects.get(id = note_id)
-    resptext = ""
-    resptext += "<a href = '/main/' style = 'text-decoration:none'><h1 style='color:gray; font-family:serif; font-size:50pt; text-decoration:none' >IntoTheDeep</h1></a><div style='background-color:black; width:750px; height:auto; padding:25px 25px 40px; display:block; border-radius:5px'>"
-    resptext += "<h2  style='color:white; font-family:serif'>" + note.title + "</h2>"
-    resptext += "<p style='color:white; font-family:serif'>"+ note.content + "</p></div>"
-    return HttpResponse(resptext)
+def note(request, pk):
+    note = Note.objects.get(id = pk)
+    return render(request, 'notes/detail_note.html', {'note_det':note})
     
+class NoteCreate(CreateView):
+    model = Note
+    form_class = NoteForm
+
+class NoteUpdate(UpdateView):
+    model = Note
+    form_class = NoteForm
+    
+class NoteDelete(DeleteView):
+    model = Note
+    success_url = reverse_lazy("main")

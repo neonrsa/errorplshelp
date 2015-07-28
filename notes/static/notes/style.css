@@ -34,4 +34,15 @@ h1{
 	font-family: 'Slabo 27px', serif;
 	font-size:50pt;
 	color:gray;
+	font-weight:700;
+}
+
+h2, h3{
+	font-family: 'Slabo 27px', serif;
+	color:gray;
+}
+
+label{
+	font-family:sans-serif;
+	color:gray;
 }

@@ -1,0 +1,33 @@
+{%extends 'notes/base.html'%}
+{%block title%}
+    Note - {{object.title}}
+{%endblock%}
+{%load staticfiles%}
+
+<link rel="stylesheet" type="text/css" href="{% static 'notes/style.css' %}" />
+
+<title>IntoTheDeep</title>
+
+<a href = '/main/' style = 'text-decoration:none'>
+    <h1>IntoTheDeep</h1>
+</a>
+
+{%block content%}
+    <div class="container" style='margin: 0 auto 20px auto;background-color:black; width:750px; height:auto; padding:25px 25px 90px; display:block; border-radius:5px;'>
+        <h4>Title</h4> 
+        <p>{{object.title}}</p>
+        <h4>Content</h4>
+        <p style='color:white; font-family:serif; font-size:20pt'>{{object.content}}</p>
+        <h4>Folder</h4>
+        <p>{{object.folder}}</p>
+        <h4>Tag(s):</h4>
+            <ul>
+                <!--https://docs.djangoproject.com/en/1.7/ref/templates/builtins/#for-->
+                {%for t in object.tag.all%}
+                    <li>{{t.title}}</li>
+                {%endfor%}
+            </ul>
+        <a href="/note/{{object.id}}/edit"><h3 style="color:gray; float:right">edit</h3></a>
+        <a href="/note/{{object.id}}/delete"><h3 style="color:gray; float:left">delete</h3></a>
+    </div>
+{%endblock%}

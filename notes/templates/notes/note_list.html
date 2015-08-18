@@ -9,14 +9,21 @@
 <a href="/add/" style="text-decoration:none"><h2 style = "float:right; margin-top:-5%; margin-right:5%; font-family:serif; color:gray">add</h2></a>
 
 
-{% if object_list  %}
-    {% for note in object_list  %}
-        <a href={%url 'detail' note.id %}>
-            <div class="postit">
-                <u>{{note.title}}</u>
-            </div>
-        </a>
-    {% endfor %}
-{% else %}
-    <p>No notes are available.</p>
-{% endif %}
+    <h2>Total number of notes: {{total}}</h2>
+    {% if object_list  %}
+        {% for note in object_list  %}
+            <a href={%url 'detail' note.id %}>
+            	<div class="postit" style="background:{{note.color}};color:{{note.fontcolor}}">
+            	  <div id="base" style="border-color:{{note.folder.color}} transparent transparent transparent;">
+                    <div class="rotatevertical">{{note.folder.title}}</div>
+                  </div>
+            <br>
+            <u>{{note.title}}</u>
+            <br>
+            {{note.content}}
+      </div>
+            </a>
+        {% endfor %}
+    {% else %}
+        <p>No notes are available.</p>
+    {% endif %}

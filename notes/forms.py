@@ -8,7 +8,8 @@ from django import forms
 class NoteForm(forms.ModelForm):
     class Meta: 
         model = Note
-        fields = '__all__'
+        #fields = '__all__'
+        exclude = ('user',)
         
     
     def __init__(self, *args, **kwargs):

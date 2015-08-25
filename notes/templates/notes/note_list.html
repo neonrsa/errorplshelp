@@ -4,21 +4,16 @@
 
 <title>IntoTheDeep</title>
 
-<h1>IntoTheDeep</h1>
+<h1 style='color:white; font-family:serif; font-size:50pt'>IntoTheDeep</h1>
 
 <a href="/add/" style="text-decoration:none"><h2 style = "float:right; margin-top:-5%; margin-right:5%; font-family:serif; color:gray">add</h2></a>
 
-
-    <h2>Total number of notes: {{total}}</h2>
     {% if object_list  %}
         {% for note in object_list  %}
             <a href={%url 'detail' note.id %}>
-            	<div class="postit" style="background:{{note.color}};color:{{note.fontcolor}}">
-            	  <div id="base" style="border-color:{{note.folder.color}} transparent transparent transparent;">
-                    <div class="rotatevertical">{{note.folder.title}}</div>
-                  </div>
+            <div class="postit" style='color:black; margin: 0 auto 20px auto;background-color:white; width:750px; height:auto; padding:25px 25px 90px; display:block; border-radius:5px;'>
             <br>
-            <u>{{note.title}}</u>
+            <u style='color:black;'>{{note.title}}</u>
             <br>
             {{note.content}}
       </div>

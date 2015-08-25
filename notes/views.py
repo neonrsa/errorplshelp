@@ -14,6 +14,7 @@ from accounts.models import UserProfile
 from .models import Note, Folder, Tag
 from .forms import NoteForm, FolderForm, TagForm
 from django.core.serializers.json import DjangoJSONEncoder
+import json
 
 
 
@@ -34,7 +35,7 @@ class NoteList(ListView):
     def dispatch(self, *args, **kwargs):
         return super(NoteList, self).dispatch(*args, **kwargs)
     
-    def get_queryset(self):
+    """def get_queryset(self):
         #self.request.user will contain the "User" object, however,
         #user field in the Note model is an instance of "UserProfile" object
         #So need to ensure that when we filter all the user owned notes, we
@@ -49,12 +50,12 @@ class NoteList(ListView):
         else:
             #filter based on current logged in user
             self.queryset = Note.objects.all().filter(user=curruser).filter(folder__title__iexact=folder)
-            return self.queryset
+            return self.queryset"""
     
     
     def get_context_data(self, **kwargs):
         context = super(NoteList, self).get_context_data(**kwargs)
-        context['total'] = self.queryset.count()
+        #context['total'] = self.queryset.count()
         #provided so that the avatar can be displayed in base.html
         context['curruser'] = UserProfile.objects.get(user=self.request.user)
         return context
@@ -67,16 +68,21 @@ class NoteCreate(CreateView):
 class NoteUpdate(UpdateView):
     model = Note
     form_class = NoteForm
+    
     @method_decorator(login_required)
     
-    def dispatch(self, *args, **kwargs):
-        return super(NoteUpdate, self).dispatch(*args, **kwargs)
+
+        
         
     def get_context_data(self, **kwargs):
         context = super(NoteUpdate, self).get_context_data(**kwargs)
         context['curruser'] = UserProfile.objects.get(user=self.request.user)
         return context
-
+    
+    def get_object(self):
+        curruser = UserProfile.objects.get(user=self.request.user)
+        note = Note.objects.get(pk=self.request.GET.get('pk')).filter(user=curruser)
+        return note
 
     
 class NoteDetail(DetailView):
@@ -95,7 +101,7 @@ class NoteDetail(DetailView):
     
 class NoteDelete(DeleteView):
     model = Note
-    success_url = reverse_lazy("main")
+    success_url = reverse_lazy("notes_list")
         
     @method_decorator(login_required)
     

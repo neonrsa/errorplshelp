@@ -71,6 +71,13 @@ class NoteUpdate(UpdateView):
     
     @method_decorator(login_required)
     
+        """def dispatch(self, *args, **kwargs):
+        try:
+            #pk = self.request.user.pk
+            #queryset = UserProfile.objects.get(user_assigned=pk)
+            return super(NoteUpdate, self).dispatch(*args, **kwargs)
+        except Note.DoesNotExist:
+            return reverse_lazy('notes_list')"""
 
         
         

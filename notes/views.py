@@ -69,9 +69,9 @@ class NoteUpdate(UpdateView):
     model = Note
     form_class = NoteForm
     
-    @method_decorator(login_required)
+    """@method_decorator(login_required)
     
-        """def dispatch(self, *args, **kwargs):
+        def dispatch(self, *args, **kwargs):
         try:
             #pk = self.request.user.pk
             #queryset = UserProfile.objects.get(user_assigned=pk)

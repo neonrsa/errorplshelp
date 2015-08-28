@@ -4,6 +4,7 @@
 <head>
   <title>
     {%block title%}
+    IntoTheDeep
     {%endblock%}
   </title>
 </head>
@@ -81,6 +82,7 @@
                         $.each(data.message, function(key, value) {
                             $el.append($("<option></option>").attr("value", value.id).text(value.title));
                         });
+
                     }
                     else{
                         $('#mymessage').html("<p>New folder creation error</p>"+data.message)

@@ -69,16 +69,9 @@ class NoteUpdate(UpdateView):
     model = Note
     form_class = NoteForm
     
-    """@method_decorator(login_required)
-    
-        def dispatch(self, *args, **kwargs):
-        try:
-            #pk = self.request.user.pk
-            #queryset = UserProfile.objects.get(user_assigned=pk)
-            return super(NoteUpdate, self).dispatch(*args, **kwargs)
-        except Note.DoesNotExist:
-            return reverse_lazy('notes_list')"""
-
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(NoteUpdate, self).dispatch(*args, **kwargs)
         
         
     def get_context_data(self, **kwargs):
@@ -86,15 +79,15 @@ class NoteUpdate(UpdateView):
         context['curruser'] = UserProfile.objects.get(user=self.request.user)
         return context
     
-    def get_object(self):
-        curruser = UserProfile.objects.get(user=self.request.user)
-        note = Note.objects.get(pk=self.request.GET.get('pk')).filter(user=curruser)
-        return note
+    #def get_object(self):
+        #curruser = UserProfile.objects.get(user=self.request.user)
+        #note = Note.objects.get(pk=self.request.GET.get('pk')).filter(user=curruser)
+        #return note
 
     
 class NoteDetail(DetailView):
     model = Note
-    #@method_decorator(login_required)
+    @method_decorator(login_required)
     
     def dispatch(self, *args, **kwargs):
         return super(NoteDetail, self).dispatch(*args, **kwargs)
